@@ -500,53 +500,114 @@ const VentasLitle = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* SAP Fiori Header Bar */}
+      {/* SAP Fiori Header Bar - Mobile Responsive */}
       <div className="bg-white border-b border-gray-200 shadow-sm">
-        <Container maxWidth="xl">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                <ShoppingCartIcon className="text-white text-lg" />
+        <Container
+          maxWidth="xl"
+          sx={{ padding: { xs: "0 16px", sm: "0 24px" } }}
+        >
+          <div className="flex items-center justify-between py-3 sm:py-4">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 rounded flex items-center justify-center">
+                <ShoppingCartIcon
+                  sx={{ fontSize: { xs: "16px", sm: "20px" } }}
+                  className="text-white"
+                />
               </div>
               <div>
                 <Typography
-                  variant="h5"
+                  variant="h6"
+                  sx={{
+                    fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                    lineHeight: { xs: "1.2", sm: "1.3" },
+                  }}
                   className="text-gray-900 font-semibold"
                 >
-                  Sistema Licoreria La Monarca
+                  Licorería La Monarca
                 </Typography>
-                <Typography variant="body2" className="text-gray-600">
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontSize: { xs: "11px", sm: "13px" },
+                    display: { xs: "none", sm: "block" },
+                  }}
+                  className="text-gray-600"
+                >
                   Gestión de Inventario y Ventas
                 </Typography>
               </div>
             </div>
-            <div className="text-sm text-gray-500">
+            <div
+              className="text-xs sm:text-sm text-gray-500"
+              style={{ display: window.innerWidth < 640 ? "none" : "block" }}
+            >
               Usuario: Viviana | {new Date().toLocaleDateString()}
             </div>
           </div>
         </Container>
       </div>
 
-      <Container maxWidth="xl" className="py-6">
-        {/* Breadcrumb Navigation */}
-        <div className="mb-6">
+      <Container
+        maxWidth="xl"
+        sx={{
+          padding: { xs: "16px", sm: "24px" },
+          paddingTop: { xs: "16px", sm: "24px" },
+          paddingBottom: { xs: "16px", sm: "24px" },
+        }}
+      >
+        {/* Breadcrumb Navigation - Mobile Hidden */}
+        <Box
+          sx={{
+            marginBottom: { xs: "16px", sm: "24px" },
+            display: { xs: "none", sm: "block" },
+          }}
+        >
           <Typography variant="body2" className="text-gray-600">
             Inicio &gt; Ventas &gt; Gestión de Productos
           </Typography>
-        </div>
+        </Box>
 
-        {/* Action Toolbar - SAP Style */}
-        <div className="mb-6">
-          <Paper elevation={1} className="p-4 bg-white border border-gray-200">
-            <div className="flex justify-between items-center">
-              <Typography variant="h6" className="text-gray-900 font-medium">
+        {/* Action Toolbar - SAP Style - Mobile Responsive */}
+        <Box sx={{ marginBottom: { xs: "16px", sm: "24px" } }}>
+          <Paper
+            elevation={1}
+            sx={{
+              padding: { xs: "16px", sm: "16px 24px" },
+              backgroundColor: "white",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                justifyContent: "space-between",
+                alignItems: { xs: "stretch", sm: "center" },
+                gap: { xs: "16px", sm: "12px" },
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: { xs: "18px", sm: "20px" },
+                  textAlign: { xs: "center", sm: "left" },
+                }}
+                className="text-gray-900 font-medium"
+              >
                 Gestión de Productos
               </Typography>
-              <div className="flex gap-3">
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: { xs: "12px", sm: "12px" },
+                }}
+              >
                 <Button
                   variant="contained"
                   startIcon={<AddIcon />}
                   onClick={() => handleOpenDialog()}
+                  fullWidth={window.innerWidth < 640}
                   sx={{
                     backgroundColor: "#0070f3",
                     "&:hover": { backgroundColor: "#0051a2" },
@@ -554,6 +615,8 @@ const VentasLitle = () => {
                     borderRadius: "4px",
                     fontWeight: 500,
                     boxShadow: "none",
+                    fontSize: { xs: "14px", sm: "14px" },
+                    padding: { xs: "10px 16px", sm: "6px 16px" },
                     "&:hover": {
                       boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
                     },
@@ -565,12 +628,15 @@ const VentasLitle = () => {
                   variant="outlined"
                   startIcon={<ShoppingCartIcon />}
                   onClick={() => handleOpenVentaDialog()}
+                  fullWidth={window.innerWidth < 640}
                   sx={{
                     borderColor: "#0070f3",
                     color: "#0070f3",
                     textTransform: "none",
                     borderRadius: "4px",
                     fontWeight: 500,
+                    fontSize: { xs: "14px", sm: "14px" },
+                    padding: { xs: "10px 16px", sm: "6px 16px" },
                     "&:hover": {
                       backgroundColor: "rgba(0, 112, 243, 0.04)",
                       borderColor: "#0051a2",
@@ -579,30 +645,279 @@ const VentasLitle = () => {
                 >
                   Nueva Venta
                 </Button>
-              </div>
-            </div>
+              </Box>
+            </Box>
           </Paper>
-        </div>
+        </Box>
 
-        {/* SAP Fiori Table */}
-        <Paper elevation={1} className="border border-gray-200">
-          <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-            <div className="flex justify-between items-center">
-              <Typography variant="h6" className="text-gray-900 font-medium">
+        {/* SAP Fiori Table - Mobile Responsive */}
+        <Paper
+          elevation={1}
+          sx={{
+            border: "1px solid #e5e7eb",
+            borderRadius: { xs: "8px", sm: "4px" },
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#f9fafb",
+              padding: { xs: "16px", sm: "16px 24px" },
+              borderBottom: "1px solid #e5e7eb",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                justifyContent: "space-between",
+                alignItems: { xs: "flex-start", sm: "center" },
+                gap: { xs: "12px", sm: "16px" },
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: { xs: "16px", sm: "18px" },
+                  color: "#1f2937",
+                  fontWeight: 500,
+                }}
+              >
                 Lista de Productos ({productos.length})
               </Typography>
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <Box
+                sx={{
+                  display: { xs: "none", sm: "flex" },
+                  alignItems: "center",
+                  gap: "8px",
+                  fontSize: "14px",
+                  color: "#6b7280",
+                }}
+              >
                 <span>Ordenar por:</span>
-                <select className="border border-gray-300 rounded px-2 py-1 text-sm">
+                <select
+                  style={{
+                    border: "1px solid #d1d5db",
+                    borderRadius: "4px",
+                    padding: "4px 8px",
+                    fontSize: "14px",
+                    backgroundColor: "white",
+                  }}
+                >
                   <option>Nombre</option>
                   <option>Precio</option>
                   <option>Stock</option>
                 </select>
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Box>
 
-          <TableContainer sx={{ backgroundColor: "white" }}>
+          {/* Mobile Card View */}
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
+            {productos.map((producto, index) => (
+              <Box
+                key={producto.id}
+                sx={{
+                  padding: "16px",
+                  borderBottom:
+                    index < productos.length - 1 ? "1px solid #f3f4f6" : "none",
+                  "&:hover": { backgroundColor: "#f9fafb" },
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: "12px",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <img
+                    src={
+                      producto.imagen ||
+                      "https://via.placeholder.com/60/E5E7EB/6B7280?text=IMG"
+                    }
+                    alt={producto.nombre}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                      border: "1px solid #e5e7eb",
+                    }}
+                  />
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontWeight: 600,
+                        color: "#1f2937",
+                        marginBottom: "4px",
+                        fontSize: "16px",
+                      }}
+                    >
+                      {producto.nombre}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "#6b7280",
+                        display: "block",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      SKU: PRD-{String(producto.id).padStart(4, "0")}
+                    </Typography>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "8px",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      <Chip
+                        label={producto.categoria}
+                        size="small"
+                        sx={{
+                          backgroundColor: "#dbeafe",
+                          color: "#1e40af",
+                          fontSize: "11px",
+                          height: "24px",
+                        }}
+                      />
+                      {producto.stock > 10 ? (
+                        <Chip
+                          label="● Disponible"
+                          size="small"
+                          sx={{
+                            backgroundColor: "#dcfce7",
+                            color: "#166534",
+                            fontSize: "11px",
+                            height: "24px",
+                          }}
+                        />
+                      ) : producto.stock > 0 ? (
+                        <Chip
+                          label="● Stock Bajo"
+                          size="small"
+                          sx={{
+                            backgroundColor: "#fef3c7",
+                            color: "#92400e",
+                            fontSize: "11px",
+                            height: "24px",
+                          }}
+                        />
+                      ) : (
+                        <Chip
+                          label="● Agotado"
+                          size="small"
+                          sx={{
+                            backgroundColor: "#fee2e2",
+                            color: "#dc2626",
+                            fontSize: "11px",
+                            height: "24px",
+                          }}
+                        />
+                      )}
+                    </Box>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      <Box>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#6b7280", fontSize: "12px" }}
+                        >
+                          Stock: {producto.stock} unidades
+                        </Typography>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            color: "#1f2937",
+                            fontWeight: 600,
+                            fontSize: "16px",
+                          }}
+                        >
+                          ${producto.precio.toLocaleString()}
+                        </Typography>
+                      </Box>
+                    </Box>
+
+                    <Box sx={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={() => handleOpenVentaDialog(producto.id)}
+                        disabled={producto.stock === 0}
+                        sx={{
+                          backgroundColor: "#0070f3",
+                          "&:hover": { backgroundColor: "#0051a2" },
+                          textTransform: "none",
+                          borderRadius: "6px",
+                          fontWeight: 500,
+                          fontSize: "12px",
+                          padding: "6px 12px",
+                          minWidth: "70px",
+                          boxShadow: "none",
+                          "&:hover": {
+                            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                          },
+                          "&:disabled": {
+                            backgroundColor: "#e5e7eb",
+                            color: "#9ca3af",
+                          },
+                        }}
+                      >
+                        Vender
+                      </Button>
+                      <IconButton
+                        onClick={() => handleOpenDialog(producto)}
+                        size="small"
+                        sx={{
+                          backgroundColor: "#f3f4f6",
+                          color: "#6b7280",
+                          "&:hover": {
+                            backgroundColor: "#e5e7eb",
+                            color: "#374151",
+                          },
+                        }}
+                      >
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleDelete(producto.id)}
+                        size="small"
+                        sx={{
+                          backgroundColor: "#fef2f2",
+                          color: "#dc2626",
+                          "&:hover": {
+                            backgroundColor: "#fee2e2",
+                            color: "#b91c1c",
+                          },
+                        }}
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+
+          {/* Desktop Table View */}
+          <TableContainer
+            sx={{
+              backgroundColor: "white",
+              display: { xs: "none", md: "block" },
+            }}
+          >
             <Table>
               <TableHead>
                 <TableRow sx={{ backgroundColor: "#fafafa" }}>
@@ -672,69 +987,126 @@ const VentasLitle = () => {
                     }}
                   >
                     <TableCell>
-                      <div className="flex items-center space-x-3">
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                        }}
+                      >
                         <img
                           src={
                             producto.imagen ||
                             "https://via.placeholder.com/48/E5E7EB/6B7280?text=IMG"
                           }
                           alt={producto.nombre}
-                          className="w-12 h-12 object-cover rounded border border-gray-200"
+                          style={{
+                            width: "48px",
+                            height: "48px",
+                            objectFit: "cover",
+                            borderRadius: "4px",
+                            border: "1px solid #e5e7eb",
+                          }}
                         />
-                        <div>
+                        <Box>
                           <Typography
                             variant="subtitle2"
-                            className="font-medium text-gray-900"
+                            sx={{ fontWeight: 500, color: "#1f2937" }}
                           >
                             {producto.nombre}
                           </Typography>
                           <Typography
                             variant="caption"
-                            className="text-gray-500"
+                            sx={{ color: "#6b7280" }}
                           >
                             SKU: PRD-{String(producto.id).padStart(4, "0")}
                           </Typography>
-                        </div>
-                      </div>
+                        </Box>
+                      </Box>
                     </TableCell>
                     <TableCell>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                        {producto.categoria}
-                      </span>
+                      <Chip
+                        label={producto.categoria}
+                        size="small"
+                        sx={{
+                          backgroundColor: "#dbeafe",
+                          color: "#1e40af",
+                          fontSize: "12px",
+                          fontWeight: 500,
+                        }}
+                      />
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-gray-900 font-medium">
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{ fontWeight: 500, color: "#1f2937" }}
+                        >
                           {producto.stock}
-                        </span>
-                        <span className="text-gray-500 text-sm">unidades</span>
-                      </div>
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: "#6b7280" }}>
+                          unidades
+                        </Typography>
+                      </Box>
                     </TableCell>
                     <TableCell>
                       <Typography
                         variant="subtitle2"
-                        className="font-semibold text-gray-900"
+                        sx={{ fontWeight: 600, color: "#1f2937" }}
                       >
                         ${producto.precio.toLocaleString()}
                       </Typography>
                     </TableCell>
                     <TableCell>
                       {producto.stock > 10 ? (
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          ● Disponible
-                        </span>
+                        <Chip
+                          label="● Disponible"
+                          size="small"
+                          sx={{
+                            backgroundColor: "#dcfce7",
+                            color: "#166534",
+                            fontSize: "12px",
+                            fontWeight: 500,
+                          }}
+                        />
                       ) : producto.stock > 0 ? (
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                          ● Stock Bajo
-                        </span>
+                        <Chip
+                          label="● Stock Bajo"
+                          size="small"
+                          sx={{
+                            backgroundColor: "#fef3c7",
+                            color: "#92400e",
+                            fontSize: "12px",
+                            fontWeight: 500,
+                          }}
+                        />
                       ) : (
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                          ● Agotado
-                        </span>
+                        <Chip
+                          label="● Agotado"
+                          size="small"
+                          sx={{
+                            backgroundColor: "#fee2e2",
+                            color: "#dc2626",
+                            fontSize: "12px",
+                            fontWeight: 500,
+                          }}
+                        />
                       )}
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center space-x-2">
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
+                      >
                         <Button
                           variant="contained"
                           size="small"
@@ -746,8 +1118,9 @@ const VentasLitle = () => {
                             textTransform: "none",
                             borderRadius: "4px",
                             fontWeight: 500,
-                            fontSize: "0.75rem",
-                            minWidth: "80px",
+                            fontSize: "12px",
+                            minWidth: "70px",
+                            padding: "4px 12px",
                             boxShadow: "none",
                             "&:hover": {
                               boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
@@ -786,7 +1159,7 @@ const VentasLitle = () => {
                         >
                           <DeleteIcon fontSize="small" />
                         </IconButton>
-                      </div>
+                      </Box>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -795,18 +1168,76 @@ const VentasLitle = () => {
           </TableContainer>
         </Paper>
 
-        {/* Dialog para Agregar/Editar Producto */}
+        {/* Dialog para Agregar/Editar Producto - Mobile Responsive */}
         <Dialog
           open={openDialog}
           onClose={handleCloseDialog}
           maxWidth="md"
           fullWidth
+          fullScreen={window.innerWidth < 640}
+          PaperProps={{
+            sx: {
+              margin: { xs: "0", sm: "32px" },
+              maxHeight: { xs: "100%", sm: "90vh" },
+              borderRadius: { xs: "0", sm: "8px" },
+            },
+          }}
         >
-          <DialogTitle className="bg-blue-50">
-            {editingProduct ? "Editar Producto" : "Agregar Nuevo Producto"}
+          <DialogTitle
+            sx={{
+              backgroundColor: "#f0f9ff",
+              padding: { xs: "16px", sm: "20px 24px" },
+              borderBottom: "1px solid #e0f2fe",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <Box
+                sx={{
+                  width: "32px",
+                  height: "32px",
+                  backgroundColor: "#0ea5e9",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {editingProduct ? (
+                  <EditIcon sx={{ color: "white", fontSize: "18px" }} />
+                ) : (
+                  <AddIcon sx={{ color: "white", fontSize: "18px" }} />
+                )}
+              </Box>
+              <Box>
+                <Typography
+                  variant="h6"
+                  sx={{ fontSize: { xs: "18px", sm: "20px" }, fontWeight: 600 }}
+                >
+                  {editingProduct
+                    ? "Editar Producto"
+                    : "Agregar Nuevo Producto"}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#0369a1",
+                    fontSize: { xs: "12px", sm: "14px" },
+                  }}
+                >
+                  {editingProduct
+                    ? "Modifica los datos del producto"
+                    : "Completa la información del nuevo producto"}
+                </Typography>
+              </Box>
+            </Box>
           </DialogTitle>
-          <DialogContent className="mt-4">
-            <Grid container spacing={3}>
+          <DialogContent
+            sx={{
+              padding: { xs: "16px", sm: "24px" },
+              paddingTop: { xs: "20px", sm: "24px" },
+            }}
+          >
+            <Grid container spacing={{ xs: 2, sm: 3 }}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
@@ -815,7 +1246,11 @@ const VentasLitle = () => {
                   value={formData.nombre}
                   onChange={handleInputChange}
                   required
-                  className="mb-4"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "8px",
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -826,6 +1261,9 @@ const VentasLitle = () => {
                     value={formData.categoria}
                     onChange={handleInputChange}
                     label="Categoría"
+                    sx={{
+                      borderRadius: "8px",
+                    }}
                   >
                     {categorias.map((cat) => (
                       <MenuItem key={cat} value={cat}>
@@ -845,6 +1283,11 @@ const VentasLitle = () => {
                   onChange={handleInputChange}
                   required
                   inputProps={{ min: 0 }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "8px",
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -857,11 +1300,24 @@ const VentasLitle = () => {
                   onChange={handleInputChange}
                   required
                   inputProps={{ min: 0, step: 0.01 }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "8px",
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <Box className="space-y-4">
-                  <Typography variant="subtitle2" className="text-gray-700">
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
+                >
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      color: "#374151",
+                      fontSize: { xs: "14px", sm: "16px" },
+                    }}
+                  >
                     Imagen del Producto
                   </Typography>
 
@@ -869,7 +1325,16 @@ const VentasLitle = () => {
                     component="label"
                     variant="outlined"
                     startIcon={<CloudUploadIcon />}
-                    className="w-full h-12 border-dashed border-2 border-gray-300 hover:border-blue-500"
+                    fullWidth
+                    sx={{
+                      height: { xs: "48px", sm: "56px" },
+                      border: "2px dashed #d1d5db",
+                      borderRadius: "8px",
+                      "&:hover": {
+                        borderColor: "#0ea5e9",
+                        backgroundColor: "#f0f9ff",
+                      },
+                    }}
                   >
                     {selectedFile ? "Cambiar Imagen" : "Subir Imagen"}
                     <input
@@ -881,7 +1346,13 @@ const VentasLitle = () => {
                   </Button>
 
                   {selectedFile && (
-                    <Typography variant="caption" className="text-gray-600">
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "#6b7280",
+                        fontSize: { xs: "12px", sm: "13px" },
+                      }}
+                    >
                       Archivo seleccionado: {selectedFile.name}
                     </Typography>
                   )}
@@ -889,18 +1360,34 @@ const VentasLitle = () => {
               </Grid>
               {previewImage && (
                 <Grid item xs={12}>
-                  <Box className="flex justify-center">
-                    <div className="relative">
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Box sx={{ position: "relative", maxWidth: "300px" }}>
                       <img
                         src={previewImage}
                         alt="Vista previa"
-                        className="max-w-xs max-h-48 object-cover rounded-lg border shadow-md"
+                        style={{
+                          width: "100%",
+                          maxHeight: "200px",
+                          objectFit: "cover",
+                          borderRadius: "8px",
+                          border: "1px solid #e5e7eb",
+                          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                        }}
                       />
                       <Button
                         size="small"
                         variant="contained"
                         color="error"
-                        className="absolute top-2 right-2"
+                        sx={{
+                          position: "absolute",
+                          top: "8px",
+                          right: "8px",
+                          minWidth: "32px",
+                          width: "32px",
+                          height: "32px",
+                          borderRadius: "50%",
+                          padding: 0,
+                        }}
                         onClick={() => {
                           setSelectedFile(null);
                           setPreviewImage(null);
@@ -909,35 +1396,65 @@ const VentasLitle = () => {
                       >
                         ✕
                       </Button>
-                    </div>
+                    </Box>
                   </Box>
                 </Grid>
               )}
             </Grid>
           </DialogContent>
-          <DialogActions className="p-4">
-            <Button onClick={handleCloseDialog}>Cancelar</Button>
+          <DialogActions
+            sx={{
+              padding: { xs: "16px", sm: "16px 24px" },
+              backgroundColor: "#f8fafc",
+              borderTop: "1px solid #e0f2fe",
+              gap: { xs: "8px", sm: "12px" },
+              flexDirection: { xs: "column", sm: "row" },
+            }}
+          >
+            <Button
+              onClick={handleCloseDialog}
+              fullWidth={window.innerWidth < 640}
+              sx={{
+                textTransform: "none",
+                color: "#6b7280",
+                "&:hover": {
+                  backgroundColor: "#f3f4f6",
+                },
+              }}
+            >
+              Cancelar
+            </Button>
             <Button
               onClick={handleSubmit}
               variant="contained"
-              className="bg-blue-600"
+              fullWidth={window.innerWidth < 640}
+              sx={{
+                backgroundColor: "#0ea5e9",
+                "&:hover": { backgroundColor: "#0284c7" },
+                textTransform: "none",
+                borderRadius: "6px",
+                fontWeight: 500,
+              }}
             >
               {editingProduct ? "Actualizar" : "Agregar"}
             </Button>
           </DialogActions>
         </Dialog>
 
-        {/* SAP Fiori Style Sales Dialog */}
+        {/* SAP Fiori Style Sales Dialog - Mobile Responsive */}
         <Dialog
           open={openVentaDialog}
           onClose={handleCloseVentaDialog}
-          maxWidth="md"
+          maxWidth="lg"
           fullWidth
+          fullScreen={window.innerWidth < 768}
           PaperProps={{
             sx: {
-              borderRadius: "8px",
+              borderRadius: { xs: "0", md: "12px" },
               boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
               border: "1px solid #e5e7eb",
+              margin: { xs: "0", md: "32px" },
+              maxHeight: { xs: "100%", md: "95vh" },
             },
           }}
         >
@@ -945,25 +1462,45 @@ const VentasLitle = () => {
             sx={{
               backgroundColor: "#f8fafc",
               borderBottom: "1px solid #e5e7eb",
-              padding: "20px 24px",
+              padding: { xs: "16px", sm: "20px 24px" },
             }}
           >
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
-                <ShoppingCartIcon className="text-white" />
-              </div>
-              <div>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <Box
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  backgroundColor: "#0070f3",
+                  borderRadius: "8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <ShoppingCartIcon sx={{ color: "white" }} />
+              </Box>
+              <Box>
                 <Typography
                   variant="h6"
-                  className="font-semibold text-gray-900"
+                  sx={{
+                    fontWeight: 600,
+                    color: "#1f2937",
+                    fontSize: { xs: "18px", sm: "20px" },
+                  }}
                 >
                   Nueva Transacción de Venta
                 </Typography>
-                <Typography variant="body2" className="text-gray-600">
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#6b7280",
+                    fontSize: { xs: "12px", sm: "14px" },
+                  }}
+                >
                   Complete los datos para procesar la venta
                 </Typography>
-              </div>
-            </div>
+              </Box>
+            </Box>
           </DialogTitle>
           <DialogContent
             sx={{
@@ -2293,23 +2830,95 @@ const VentasLitle = () => {
         </Snackbar>
       </Container>
 
-      {/* SAP Fiori Footer */}
-      <div className="bg-white border-t border-gray-200 mt-8">
+      {/* SAP Fiori Footer - Mobile Responsive */}
+      <Box
+        sx={{
+          backgroundColor: "white",
+          borderTop: "1px solid #e5e7eb",
+          marginTop: { xs: "32px", sm: "32px" },
+        }}
+      >
         <Container maxWidth="xl">
-          <div className="py-4 flex justify-between items-center text-sm text-gray-600">
-            <div>
-              © 2025 Sistema de Ventas. Desarrollado con tecnología empresarial.
-            </div>
-            <div className="flex items-center space-x-4">
-              <span>Versión 1.0</span>
-              <span>|</span>
-              <span>Soporte Técnico</span>
-              <span>|</span>
-              <span>Estado: En línea</span>
-            </div>
-          </div>
+          <Box
+            sx={{
+              padding: { xs: "16px 0", sm: "16px 0" },
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              justifyContent: "space-between",
+              alignItems: { xs: "center", sm: "center" },
+              gap: { xs: "12px", sm: "16px" },
+              textAlign: { xs: "center", sm: "left" },
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#6b7280",
+                fontSize: { xs: "12px", sm: "14px" },
+              }}
+            >
+              © 2025 Licorería La Monarca. Desarrollado con tecnología
+              empresarial.
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: { xs: "8px", sm: "16px" },
+                flexWrap: "wrap",
+                justifyContent: { xs: "center", sm: "flex-end" },
+              }}
+            >
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#6b7280",
+                  fontSize: { xs: "11px", sm: "12px" },
+                }}
+              >
+                Versión 1.0
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#d1d5db",
+                  display: { xs: "none", sm: "inline" },
+                }}
+              >
+                |
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#6b7280",
+                  fontSize: { xs: "11px", sm: "12px" },
+                }}
+              >
+                Soporte Técnico
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#d1d5db",
+                  display: { xs: "none", sm: "inline" },
+                }}
+              >
+                |
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#059669",
+                  fontSize: { xs: "11px", sm: "12px" },
+                  fontWeight: 500,
+                }}
+              >
+                Estado: En línea
+              </Typography>
+            </Box>
+          </Box>
         </Container>
-      </div>
+      </Box>
     </div>
   );
 };
